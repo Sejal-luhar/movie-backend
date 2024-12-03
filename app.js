@@ -7,6 +7,7 @@ const passport = require('passport');
 var cookieParser = require('cookie-parser');
 const User = require('./models/userSchema');
 var logger = require('morgan');
+const LocalStrategy=require('passport-local').Strategy;
 
 const cors = require('cors');
 require('./config/db')
@@ -33,7 +34,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: process.env.FRONTENDURL, // Frontend URL
+  origin: true, // Frontend URL
   credentials: true, // Allow cookies for session management
 }));
 
@@ -46,6 +47,24 @@ app.use(passport.session());
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// passport.use(new LocalStrategy(
+//   async (username, password, done) => {
+//     try {
+//       const user = await User.findOne({ username });
+//       if (!user) {
+//         return done(null, false, { message: 'User not found.' });
+//       }
+//       const isMatch = await user.validatePassword(password); // Implement this method in your User model
+//       if (!isMatch) {
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       return done(null, user);
+//     } catch (err) {
+//       return done(err);
+//     }
+//   }
+// ));
 
 
 app.use('/', indexRouter);
