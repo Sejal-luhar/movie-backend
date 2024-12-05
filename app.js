@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: 'https://movie-frontend-swart.vercel.app', // Frontend URL
+  origin: 'https://movie-frontend-i7p80e1h5-sejal-luhars-projects.vercel.app/', // Frontend URL
   credentials: true, // Allow cookies for session management
 }));
 
