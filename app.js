@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: 'https://movie-frontend-swart.vercel.app/', // Frontend URL
+  origin: 'https://movie-frontend-swart.vercel.app', // Frontend URL
   credentials: true, // Allow cookies for session management
 }));
 
